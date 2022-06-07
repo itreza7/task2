@@ -5,10 +5,12 @@ namespace App\Interfaces;
 interface DBLoader
 {
 
-    public function load($path);
+    public function load(...$args): void;
 
-    public function exists($string);
+    public function exists($string): bool;
 
-    public function get_class($string);
+    public function get_class($string): ?string;
+
+    public function get_classes(): array;
 
 }
