@@ -11,14 +11,14 @@ class WordsBagTXTTest extends TestCase
     /** @test */
     public function loading_test(): void{
         $wb = new WordsBagTXT();
-        $wb->load('C:\xampp\htdocs\textFinder-Interview\storage\article.txt');
+        $wb->load('../../storage/article.txt');
         $this->assertTrue(true);
     }
 
     /** @test */
     public function get_bag_test(): void{
         $wb = new WordsBagTXT();
-        $wb->load('C:\xampp\htdocs\textFinder-Interview\storage\article.txt');
+        $wb->load('../../storage/article.txt');
         $bag = $wb->get_bag();
         $expected = [
             'فوتبال' => 1,
