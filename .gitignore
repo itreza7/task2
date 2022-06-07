@@ -1,5 +1,6 @@
 /tests
 /vendor
 /.idea
+composer.lock
 .phpunit.result.cache
 vendor
