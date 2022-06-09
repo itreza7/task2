@@ -7,7 +7,7 @@ use App\Interfaces\WordsBag;
 class WordsBagTXT implements WordsBag
 {
 
-    private $text = '';
+    protected $text = '';
 
     public function load(...$args): void
     {

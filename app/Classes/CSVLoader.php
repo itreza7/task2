@@ -2,13 +2,12 @@
 
 namespace App\Classes;
 
-
 use App\Interfaces\DBLoader;
 
 class CSVLoader implements DBLoader
 {
 
-    private array $db = [];
+    protected array $db = [];
 
     public function load(...$args): void
     {

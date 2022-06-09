@@ -7,8 +7,8 @@ use App\Interfaces\WordsBag;
 
 class TextClassifier
 {
-    private DBLoader $db;
-    private WordsBag $bags;
+    protected DBLoader $db;
+    protected WordsBag $bags;
 
     public function __construct(DBLoader $db, WordsBag $bags)
     {
