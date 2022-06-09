@@ -9,11 +9,13 @@ class TextClassifier
 {
     protected DBLoader $db;
     protected WordsBag $bags;
+    protected string $default_class;
 
-    public function __construct(DBLoader $db, WordsBag $bags)
+    public function __construct(DBLoader $db, WordsBag $bags, $default_class = 'NaN')
     {
         $this->db = $db;
         $this->bags = $bags;
+        $this->default_class = $default_class;
     }
 
     public function get_count_of_classes(): array
@@ -22,14 +24,17 @@ class TextClassifier
         $bags = $this->bags;
         $classes = $db->get_classes();
         $counts = array_combine($classes, array_fill(0, count($classes), 0));
-        $counts['متفرقه'] = 0;
+        $counts[$this->default_class] = 0;
         foreach ($bags->get_bag() as $word => $count){
             $class = $db->get_class($word);
-            if(isset($counts[$class])){
-                $counts[$class] += $count;
+            if (!empty($class)){
+                $class = $class[0];
             }
             else{
-                $counts['متفرقه'] += $count;
+                $class = $this->default_class;
+            }
+            if(isset($counts[$class])){
+                $counts[$class] += $count;
             }
         }
         return $counts;
@@ -43,7 +48,7 @@ class TextClassifier
         $max_count = 0;
         foreach ($counts as $class => $count){
             $output .= $i . '- ' . "شما $count کلمه از دسته $class داشتید." . $deliminator;
-            if($class !== 'متفرقه' && $count >= $max_count){
+            if($class !== $this->default_class && $count >= $max_count){
                 $max_count = $count;
                 $max = $class;
             }
