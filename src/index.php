@@ -7,7 +7,7 @@ use App\Classes\WordsBagTXT;
 require '../vendor/autoload.php';
 
 $db = new CSVLoader();
-$db->load('../storage/database.csv');
+$db->load('../storage/databaseFactor.csv');
 
 $wb = new WordsBagTXT();
 $wb->load('../storage/article.txt');
