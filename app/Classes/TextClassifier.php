@@ -26,15 +26,14 @@ class TextClassifier
         $counts = array_combine($classes, array_fill(0, count($classes), 0));
         $counts[$this->default_class] = 0;
         foreach ($bags->get_bag() as $word => $count){
-            $class = $db->get_class($word);
-            if (!empty($class)){
-                $class = $class[0];
+            $class_list = $db->get_class($word);
+            if (!empty($class_list)){
+                foreach ($class_list as $class){
+                    $counts[$class] += 1;
+                }
             }
             else{
-                $class = $this->default_class;
-            }
-            if(isset($counts[$class])){
-                $counts[$class] += $count;
+                $counts[$this->default_class] += 1;
             }
         }
         return $counts;
