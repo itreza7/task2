@@ -9,7 +9,7 @@ interface DBLoader
 
     public function exists($string): bool;
 
-    public function get_class($string): ?string;
+    public function get_class($string): array;
 
     public function get_classes(): array;
 
