@@ -31,18 +31,19 @@ class CSVLoader implements DBLoader
 
     public function exists($string): bool
     {
-        return (bool) $this->get_class($string);
+        return !empty($this->get_class($string));
     }
 
-    public function get_class($string): ?string
+    public function get_class($string): array
     {
         $db = $this->db;
+        $classes = [];
         foreach ($db as $class => $value){
             if (in_array($string, $value)){
-                return $class;
+                $classes[] = $class;
             }
         }
-        return null;
+        return $classes;
     }
 
     public function get_classes(): array
