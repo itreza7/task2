@@ -7,10 +7,10 @@ use App\Classes\WordsBagTXT;
 require '../vendor/autoload.php';
 
 $db = new CSVLoader();
-$db->load('C:\xampp\htdocs\textFinder-Interview\storage\database.csv');
+$db->load('../storage/database.csv');
 
 $wb = new WordsBagTXT();
-$wb->load('C:\xampp\htdocs\textFinder-Interview\storage\article.txt');
+$wb->load('../storage/article.txt');
 
 $tc = new TextClassifier($db, $wb);
 echo $tc->report();
